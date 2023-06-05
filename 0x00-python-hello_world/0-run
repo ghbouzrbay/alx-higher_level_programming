@@ -1,6 +1,6 @@
-#!/usr/bin
+#!/bin/bash
 
-# Get the Python script file name from the environment variable
+# Get the Python script file
 py_file="$PYFILE"
 
 # Run the Python script
