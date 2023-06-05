@@ -1,8 +1,4 @@
 #!/bin/bash
 
-# Get the Python script file
-py_file="$PYFILE"
-
-# Run the Python script
-python3 "$py_file"
+python3 "$PYFILE"
 
