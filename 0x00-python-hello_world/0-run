@@ -1,13 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin
 
 # Get the Python script file name from the environment variable
 py_file="$PYFILE"
 
-# Check if the Python script file exists
-if [ -f "$py_file" ]; then
-    # Run the Python script
-    python3 "$py_file"
-else
-    echo "Python script file not found: $py_file"
-    exit 1
-fi
+# Run the Python script
+python3 "$py_file"
+
