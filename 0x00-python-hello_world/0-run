@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/python3
 
 # Get the Python script file name from the environment variable
 py_file="$PYFILE"
