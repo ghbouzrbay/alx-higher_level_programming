@@ -2,6 +2,6 @@
 
 class Square:
     
-    def __init__(self, side_length):
-        self.side_len = side_length
+    def __init__(self, side):
+        self.__side = side
 
