@@ -2,6 +2,6 @@
 
 class Square:
     
-    def __init__(self, side):
-        self.__side = side
+    def __init__(self, size):
+        self.__size = size
 
