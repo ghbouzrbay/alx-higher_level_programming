@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """program that solves the N queens problem.
+Determines all possible solutions to placing N
+N non-attacking queens on an NxN chessboard.
 
 Attributes:
     board (list): A list of lists representing the chessboard.
     solutions (list): A list of lists containing solutions.
+
 """
 
 
