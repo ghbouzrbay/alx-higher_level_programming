@@ -4,6 +4,20 @@
 
 import sys
 
+def init_board(n):
+    """Initialize an `n`x`n` sized chessboard with empty squares."""
+    board = []
+    for _ in range(n):
+        row = [' '] * n
+        board.append(row)
+    return board
+
+
+def board_deepcopy(board):
+    """Return a deep copy of a chessboard."""
+    if isinstance(board, list):
+        return list(map(board_deepcopy, board))
+    return board
 
 def get_solution(board):
     """Return a list of queen positions in a solved chessboard."""
