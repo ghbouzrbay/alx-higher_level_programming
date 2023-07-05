@@ -3,29 +3,29 @@
 /**
  * print_python_string - function that prints Python strings.
  *
- * @p: ...
+ * @p: PyObject string object
  *
  */
 
 void print_python_string(PyObject *p)
 {
-    Py_ssize_t size;
-    Py_UCS4 *unicode_str;
+	long int length;
 
-    printf("[.] string object info\n");
+	fflush(stdout);
 
-    if (!PyUnicode_Check(p))
-    {
-        printf("  [ERROR] Invalid String Object\n");
-        return;
-    }
+	printf("[.] string object info\n");
+	if (strcmp(p->ob_type->tp_name, "str") != 0)
+	{
+		printf("  [ERROR] Invalid String Object\n");
+		return;
+	}
 
-    size = PyUnicode_GET_LENGTH(p);
-    unicode_str = PyUnicode_AsUCS4Copy(p);
+	length = ((PyASCIIObject *)(p))->length;
 
-    printf("  type: %s\n", Py_TYPE(p)->tp_name);
-    printf("  length: %zd\n", size);
-    printf("  value: %ls\n", unicode_str);
-
-    PyMem_Free(unicode_str);
+	if (PyUnicode_IS_COMPACT_ASCII(p))
+		printf("  type: compact ascii\n");
+	else
+		printf("  type: compact unicode object\n");
+	printf("  length: %ld\n", length);
+	printf("  value: %ls\n", PyUnicode_AsWideCharString(p, &length));
 }
