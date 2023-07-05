@@ -1,36 +1,28 @@
 #!/usr/bin/python3
-"""function that multiplies 2 matrices"""
-
-def validate_matrix(matrix, name):
-    if not isinstance(matrix, list):
-        raise TypeError("{} must be a list".format(name))
-    if not all(isinstance(row, list) for row in matrix):
-        raise TypeError("{} must be a list of lists".format(name))
-    if len(matrix) == 0 or any(len(row) == 0 for row in matrix):
-        raise ValueError("{} can't be empty".format(name))
-    if any(not isinstance(elem, (int, float)) for row in matrix for elem in row):
-        raise TypeError("{} should contain only integers or floats".format(name))
-    row_sizes = set(len(row) for row in matrix)
-    if len(row_sizes) > 1:
-        raise TypeError("each row of {} must be of the same size".format(name))
 
 def matrix_mul(m_a, m_b):
-    validate_matrix(m_a, "m_a")
-    validate_matrix(m_b, "m_b")
+    # Validate m_a
+    if not isinstance(m_a, list) or not isinstance(m_b, list):
+        raise TypeError("m_a must be a list or m_b must be a list")
+    if not all(isinstance(row, list) for row in m_a) or not all(isinstance(row, list) for row in m_b):
+        raise TypeError("m_a must be a list of lists or m_b must be a list of lists")
+    if len(m_a) == 0 or len(m_a[0]) == 0 or len(m_b) == 0 or len(m_b[0]) == 0:
+        raise ValueError("m_a can't be empty or m_b can't be empty")
+    if not all(isinstance(num, (int, float)) for row in m_a for num in row) or not all(isinstance(num, (int, float)) for row in m_b for num in row):
+        raise TypeError("m_a should contain only integers or floats or m_b should contain only integers or floats")
+    if not all(len(row) == len(m_a[0]) for row in m_a) or not all(len(row) == len(m_b[0]) for row in m_b):
+        raise TypeError("each row of m_a must be of the same size or each row of m_b must be of the same size")
 
-    rows_a = len(m_a)
-    cols_a = len(m_a[0])
-    rows_b = len(m_b)
-    cols_b = len(m_b[0])
-
-    if cols_a != rows_b:
+    # Matrix multiplication
+    if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
-    result = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
-
-    for i in range(rows_a):
-        for j in range(cols_b):
-            for k in range(cols_a):
-                result[i][j] += m_a[i][k] * m_b[k][j]
+    result = []
+    for i in range(len(m_a)):
+        row = []
+        for j in range(len(m_b[0])):
+            value = sum(m_a[i][k] * m_b[k][j] for k in range(len(m_a[0])))
+            row.append(value)
+        result.append(row)
 
     return result
