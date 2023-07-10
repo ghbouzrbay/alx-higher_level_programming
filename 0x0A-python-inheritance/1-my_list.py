@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-
-"""Defines an inherited list class MyList."""
+"""class MyList that inherits from list"""
 
 class MyList(list):
     """Implements sorted printing for the built-in list class."""
