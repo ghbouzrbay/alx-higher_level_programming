@@ -1,54 +1,30 @@
 #!/usr/bin/python3
-"""script that reads stdin line by line and computes metrics"""
 
 import sys
+from collections import defaultdict
 
+def compute_metrics():
+    total_size = 0
+    status_codes = defaultdict(int)
 
-def print_info():
-    print('File size: {:d}'.format(file_size))
+    try:
+        line_count = 0
+        for line in sys.stdin:
+            line_count += 1
+            ip_address, _, _, _, status_code, file_size = line.split()[0], line.split()[3], line.split()[5], line.split()[8], line.split()[10], line.split()[11]
+            total_size += int(file_size)
+            status_codes[status_code] += 1
 
-    for scode, code_times in sorted(status_codes.items()):
-        if code_times > 0:
-            print('{}: {:d}'.format(scode, code_times))
+            if line_count % 10 == 0:
+                print_statistics(total_size, status_codes)
 
+    except KeyboardInterrupt:
+        print_statistics(total_size, status_codes)
 
-status_codes = {
-    '200': 0,
-    '301': 0,
-    '400': 0,
-    '401': 0,
-    '403': 0,
-    '404': 0,
-    '405': 0,
-    '500': 0
-}
+def print_statistics(total_size, status_codes):
+    print(f"Total file size: {total_size}")
+    for status_code in sorted(status_codes.keys()):
+        print(f"{status_code}: {status_codes[status_code]}")
 
-lc = 0
-file_size = 0
-
-try:
-    for line in sys.stdin:
-        if lc != 0 and lc % 10 == 0:
-            print_info()
-
-        pieces = line.split()
-
-        try:
-            status = int(pieces[-2])
-
-            if str(status) in status_codes.keys():
-                status_codes[str(status)] += 1
-        except:
-            pass
-
-        try:
-            file_size += int(pieces[-1])
-        except:
-            pass
-
-        lc += 1
-
-    print_info()
-except KeyboardInterrupt:
-    print_info()
-    raise
+if __name__ == "__main__":
+    compute_metrics()
