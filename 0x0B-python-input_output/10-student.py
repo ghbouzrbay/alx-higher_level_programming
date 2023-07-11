@@ -5,7 +5,7 @@
 class Student:
     """Represent a student."""
     def __init__(self, first_name, last_name, age):
-        """__init__ initialized constructor
+        """Initialize a new Student.
 
         Args:
             first_name (str): first name
@@ -25,7 +25,6 @@ class Student:
         Args:
             attrs (list): (Optional) The attributes to represent.
         """
-        if (type(attrs) == list and
-                all(type(ele) == str for ele in attrs)):
+        if (type(attrs) == list and all(type(ele) == str for ele in attrs)):
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
