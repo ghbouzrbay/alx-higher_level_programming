@@ -10,4 +10,4 @@ def to_json_string(my_obj):
     Args:
         my_obj (obj): any object for example list, dict
     """
-    return(json.dumps(my_obj))
+    return (json.dumps(my_obj))
