@@ -12,5 +12,5 @@ def load_from_json_file(filename):
         my_obj (obj): any object for example list, dict
         filename: file name
     """
-    with open(filename, 'r', encoding='utf-8') as f:
-        return(json.load(f))
+    with open(filename) as f:
+        return (json.load(f))
