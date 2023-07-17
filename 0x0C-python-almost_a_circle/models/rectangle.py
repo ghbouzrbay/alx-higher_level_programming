@@ -1,21 +1,29 @@
 #!/usr/bin/python3
+"""Defines a class Rectangle that inherits from Base"""
 
-"""Rectangle class"""
 
 from models.base import Base
-"""superclass Base"""
 
 
 class Rectangle(Base):
-    """subclass Rectangle"""
+    """Class that defines properties of Rectangle.
+
+     Attributes:
+        width (int): width of rectangle.
+        height (int): height of rectangle.
+        x (int): x.
+        y (int): y.
+    """
+
     def __init__(self, width, height, x=0, y=0, id=None):
-        """initialize instance attributes
+        """Creates new instances of rectangle.
+
         Args:
-            width (int): width
-            height (int): height
-            x (int) = x
-            y (int) = y
-            id (int) = id
+            width (int): width of rectangle.
+            height (int): height of rectangle.
+            x (int, optional): x. Defaults to 0.
+            y (int, optional): y. Defaults to 0.
+            id (int, optional): Identity number of rectangle. Defaults to None.
         """
         self.width = width
         self.height = height
@@ -23,21 +31,33 @@ class Rectangle(Base):
         self.y = y
         super().__init__(id)
 
+    def __str__(self):
+        """Prints rectangle"""
+        return ("[Rectangle] ({}) {:d}/{:d} - {:d}/{:d}".
+                format(self.id, self.__x, self.__y, self.__width,
+                       self.__height))
+
     @property
     def width(self):
-        """get width
+        """Width retriever.
+
         Returns:
-            width
+            int: width of rectangle.
         """
         return self.__width
 
     @width.setter
     def width(self, value):
-        """set width
+        """Property setter for width of rectangle.
+
         Args:
-            value (int): value
+            value (int): width of rectangle.
+
+        Raises:
+            TypeError: if width is not an integer.
+            ValueError: if width is less than or equal to zero.
         """
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
@@ -45,19 +65,25 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """get height
+        """Height retriever.
+
         Returns:
-            height
+            int: height of rectangle.
         """
         return self.__height
 
     @height.setter
     def height(self, value):
-        """set height
+        """Property setter for height of rectangle.
+
         Args:
-            value (int): value
+            value (int): height of rectangle.
+
+        Raises:
+            TypeError: if height is not an integer.
+            ValueError: if height is less than or equal to zero.
         """
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
@@ -65,17 +91,23 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """get x
+        """x retriever.
+
         Returns:
-            x
+            int: x.
         """
         return self.__x
 
     @x.setter
     def x(self, value):
-        """set x
+        """Property setter for x.
+
         Args:
-            value (int): value
+            value (int): x.
+
+        Raises:
+            TypeError: if x is not an integer.
+            ValueError: if x is less than or equal to zero.
         """
         if type(value) is not int:
             raise TypeError("x must be an integer")
@@ -85,97 +117,79 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """get y
+        """y retriever.
+
         Returns:
-            y
+            int: y.
         """
         return self.__y
 
     @y.setter
     def y(self, value):
-        """set y
+        """Property setter for y.
+
         Args:
-            value (int): value
+            value (int): y.
+
+        Raises:
+            TypeError: if y is not an integer.
+            ValueError: if y is less than or equal to zero.
         """
         if type(value) is not int:
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
-[O
+
     def area(self):
-        """find area of rectangle
+        """Calculates area of a rectangle.
+
         Returns:
-            area of rectangle
+            int: area.
         """
         return self.__width * self.__height
 
     def display(self):
-        """prints in stdout the Rectangle instance with the character #"""
-        for k in range(self.__y):
-            print()
+        """Prints in stdout the Rectangle instance with the character #."""
+        if self.__y > 0:
+            for i in range(self.__y):
+                print()
+            self.__y = 0
         for i in range(self.__height):
-            print(" " * self.__x, end="")
             for j in range(self.__width):
+                if self.__y == j:
+                    print(" " * self.__x, end="")
                 print("#", end="")
             print()
 
-    def __str__(self):
-        """returns string to be printed
-        Returns:
-            string to be printed
-        """
-        return "[{:s}] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
-            type(self).__name__, self.id, self.__x, self.__y,
-            self.__width, self.__height)
-
     def update(self, *args, **kwargs):
-        """assigns an argument to each attribute
+        """Assigns an argument to each attribute
+
         Args:
-            args (int): arguments to send a non-keyworded variable
-                length argument list to the function
-            kwargs (dict): keyworded variable length of arguments
+            *args (tuple): arguments.
+            **kwargs (dict): double pointer to a dictionary.
         """
-        if args is not None and len(args) != 0:
+
+        # print("args {}".format(type(args)))
+        # print("kwargs {}".format(type(kwargs)))
+        if args is not None and len(args) is not 0:
+            list_atrr = ['id', 'width', 'height', 'x', 'y']
             for i in range(len(args)):
-                if i == 0:
-                    self.id = args[i]
-                elif i == 1:
-                    self.__width = args[i]
-                elif i == 2:
-                    self.__height = args[i]
-                elif i == 3:
-                    self.__x = args[i]
-                elif i == 4:
-                    self.__y = args[i]
-        elif kwargs is not None and len(kwargs) != 0:
-            for key in kwargs:
-                if key == "id":
-                    self.id = kwargs[key]
-                elif key == "width":
-                    self.__width = kwargs[key]
-                elif key == "height":
-                    self.__height = kwargs[key]
-                elif key == "x":
-                    self.__x = kwargs[key]
-                elif key == "y":
-                    self.__y = kwargs[key]
+                setattr(self, list_atrr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
-        """creates a dictionary representation of a Rectangle
+        """Returns the dictionary representation of a Rectangle.
+
         Returns:
-            dictionary representation of a Rectangle
+            dict: rectangle.
         """
-        a_dict = {"id": 0, "width": 0, "height": 0, "x": 0, "y": 0}
-        for key in a_dict:
-            if key == "id":
-                a_dict[key] = self.id
-            elif key == "width":
-                a_dict[key] = self.width
-            elif key == "height":
-                a_dict[key] = self.height
-            elif key == "x":
-                a_dict[key] = self.x
-            elif key == "y":
-                a_dict[key] = self.y
-        return a_dict
+        dict = {}
+        dict["id"] = self.id
+        dict["width"] = self.width
+        dict["height"] = self.height
+        dict["x"] = self.x
+        dict["y"] = self.y
+        return (dict)

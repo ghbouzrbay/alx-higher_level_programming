@@ -1,94 +1,97 @@
 #!/usr/bin/python3
+"""Defines a class Square"""
 
-"""Square class"""
 
+from inspect import classify_class_attrs
 from models.rectangle import Rectangle
-"""superclass Rectangle"""
 
 
 class Square(Rectangle):
-    """class Square"""
+    """Class that defines properties of Square.
+
+     Attributes:
+        width (int): width of rectangle.
+        height (int): height of rectangle.
+        x (int): x.
+        y (int): y.
+        id (int): identity of square.
+    """
     def __init__(self, size, x=0, y=0, id=None):
-        """initialize instance attributes
+        """Creates new instances of Square
+
         Args:
-            size (int): size
-            x (int): x
-            y (int): y
-            id (int): id
+            size (int): width and height of square.
+            x (int, optional): x. Defaults to 0.
+            y (int, optional): y. Defaults to 0.
+            id (int, optional): Identity number of square. Defaults to None.
         """
         super().__init__(size, size, x, y, id)
-        self.width = size
-        self.height = size
 
     def __str__(self):
-        """returns string
-        Returns:
-            string
-        """
-        return "[{:s}] ({:d}) {:d}/{:d} - {:d}".format(
-            type(self).__name__, self.id, self.x, self.y, self.width)
+        """Prints square"""
+        return ("[Square] ({}) {:d}/{:d} - {:d}".
+                format(self.id, self.x, self.y, self.size))
 
     @property
     def size(self):
-        """get size
+        """Property retriever for size.
+
         Returns:
-            size
+            int: size of one side of square.
         """
         return self.width
 
-    @size.setter
+[O    @size.setter
     def size(self, value):
-        """set size
+        """Property setter for width of square.
         Args:
-            value (int): size
+            value (int): width of square.
+        Raises:
+            TypeError: if width is not an integer.
+            ValueError: if width is less than or equal to zero.
         """
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
+        
         self.width = value
         self.height = value
 
     def update(self, *args, **kwargs):
-        """assign attributes
+        """Assigns an argument to each attribute
+
         Args:
-            args (int): arguments to send a non-keyworded variable
-                length argument list to the function
-            kwargs (dict): keyworded variable length of arguments
+            *args (tuple): arguments.
+            **kwargs (dict): double pointer to a dictionary.
         """
-        if args is not None and len(args) != 0:
+        if args is not None and len(args) is not 0:
+            list_atr = ['id', 'size', 'x', 'y']
             for i in range(len(args)):
-                if i == 0:
-                    self.id = args[i]
-                elif i == 1:
-                    self.width = args[i]
-                    self.height = args[i]
-                elif i == 2:
-                    self.x = args[i]
-                elif i == 3:
-                    self.y = args[i]
-        elif kwargs is not None and len(kwargs) != 0:
-            for key in kwargs:
-                if key == "id":
-                    self.id = kwargs[key]
-                elif key == "size":
-                    self.width = kwargs[key]
-                    self.height = kwargs[key]
-                elif key == "x":
-                    self.x = kwargs[key]
-                elif key == "y":
-                    self.y = kwargs[key]
+                if list_atr[i] == 'size':
+                    setattr(self, 'width', args[i])
+                    setattr(self, 'height', args[i])
+                else:
+                    setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                if key == 'size':
+                    setattr(self, 'width', value)
+                    setattr(self, 'height', value)
+                else:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """create dictionary representation of a square
+        """Returns the dictionary representation of a Square.
+
         Returns:
-            dictionary representation of a Square
+            dict: square.
         """
-        a_dict = {"id": 0, "size": 0, "x": 0, "y": 0}
-        for key in a_dict:
-            if key == "id":
-                a_dict[key] = self.id
-            elif key == "size":
-                a_dict[key] = self.width
-                a_dict[key] = self.height
-            elif key == "x":
-                a_dict[key] = self.x
-            elif key == "y":
-                a_dict[key] = self.y
-        return a_dict
+        dict1 = self.__dict__
+        dict2 = {}
+        dict2['id'] = dict1['id']
+        dict2['size'] = dict1['_Rectangle__width']
+        dict2['x'] = dict1['_Rectangle__x']
+        dict2['y'] = dict1['_Rectangle__y']
+
+        return dict2
