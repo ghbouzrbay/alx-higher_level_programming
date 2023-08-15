@@ -2,7 +2,7 @@
 
 
 
-#Databases
+## Databases
 
 **What are databases?**
 
@@ -22,7 +22,7 @@ Then, why not store your data in flat files, as you did in the “Relational dat
 
 Also, a solid database will provide strong performance (because I/O is your bottleneck and databases are I/O, so their performance makes a whole lot more of a difference than the performance of your application’s code) and scalability (inserting one user in a collection of 5 users should take about the same time as inserting one user in a collection of 5 billion users).
 
-#ACID is a cool acronym! CRUD is another cool one
+## ACID is a cool acronym! CRUD is another cool one
 
 You will definitely run into the concept of “CRUD” operations. It’s just a fancy way to refer to the 4 operations that can be performed on the data itself:
 
@@ -33,7 +33,7 @@ You will definitely run into the concept of “CRUD” operations. It’s just a
 
 Obviously, a database should allow all four. Yes, that’s it.
 
-#2+ kinds of databases
+## 2+ kinds of databases
 
 + When people talk about databases, they’re usually referring to relational databases (such as PostgreSQL, MySQL, Oracle, …); but there are many other kinds of databases used in the industry, which are globally referred to as “NoSQL” databases, even though they can be very different from each other, and serve very various purposes. Also, the name “NoSQL” comes from SQL, which is the name of the syntax used to give orders (CRUD operations, creating and deleting tables, …) to a relational databases; however, some non-relational databases, which are referred to as “NoSQL” give the option to use the SQL syntax. Therefore, the term “NoSQL” is quite controversial to refer to non-relational databases, but it is still widely used.
 
@@ -41,7 +41,7 @@ Obviously, a database should allow all four. Yes, that’s it.
 
 + Therefore: it is crucial for a software engineer to know very well how relational databases work, because the odds are very strong that you will encounter them in your career; but it is also very important to get acquainted with the most popular types of NoSQL databases, because the odds that you run into them, however kinda smaller, are pretty strong too.
 
-#SQL
+## SQL
 
 In order to work with relational databases, you will need to get familiar with SQL syntax. A lot of developers will acknowledge that they find the SQL syntax unpleasantly hard to use, which has some outcomes:
 
@@ -53,7 +53,7 @@ In order to work with relational databases, you will need to get familiar with S
 
 + For a beginner, keep in mind that SQL’s syntax is a bit hard to wrap your head around, so maybe you should follow a tutorial first. Please don’t try to memorize the SQL syntax. I’ve used SQL extensively in very advanced cases, on systems with hundreds of millions of records, and I still go on Google each time I need to compose a SQL query.
 
-#Some terminology around relational databases
+## Some terminology around relational databases
 
 One good thing about relational databases is that whether they’re PostgreSQL, MySQL, Oracle, or other, they’ve managed to be pretty consistent across brands. Therefore, not only are their versions of SQL pretty decently similar (at least for CRUD operations), but the terminology they’re using are mostly the same.
 
@@ -63,13 +63,15 @@ Your users have 3 pieces of information to store: their “id”, their “login
 
 Now, let’s add a user in the database with SQL:
 
-'''SQL
+```
+
 INSERT INTO users (login, password) VALUES ('rudy', '01234567890123456789012345678901');
-'''
+
+```
 
 This adds a row in the table (sometimes also refered to as a record, or more rarely, a tuple).
 
-#Why are they called “relational” databases?
+## Why are they called “relational” databases?
 
 Historically, the initial reason was that tables used to be called “relations” (they gather a lot of datas that are “related” to each other, since they follow the same structure). However, tables are now tables, and the term “relation” has now been recycled for another use.
 
@@ -88,36 +90,41 @@ Once you have your relation, you can do pretty advanced things. For instance, yo
 
 Note: you can have a relation between rows of the same table, for instance, a user that is the “sponsor” of another one, a comment that is a “reply” of another one, …
 
-#Some more terminology around relational databases
+## Some more terminology around relational databases
 
 + Indexes
 
 Say you want to get all of the comments that are attached to the post of ID 12:
 
-'''Unix
+```
+
 SELECT * FROM comments WHERE post_id=12;
-'''
+
+```
 
 If you have millions or billions of comments, having your database extract the comments that match this condition can be amazingly time-consuming. Therefore, you can add an index on the comments table, that applies to the post_id column. This will “precompute” every possible SELECT query with WHERE conditions on this column, which will update themselves every time you modify data, so that those calls are ready to respond very quickly.
 
 Let’s complicate things a bit, and say you want to optimize this query:
 
-'''Unix
+```
+
 SELECT * FROM comments WHERE post_id=12 AND published=1;
-'''
+
+```
 
 Your index on the post_id column might not help much on that query. However, for that query, you can absolutely define an index on multiple column (in this case, the columns post_id and published).
 
 Setting indexes properly is a known quick win to improve performance of relational databases on queries that are performed very often and take a long time to respond (so-called slow queries). I can quote at least a dozen occurrences in my career where setting up an index properly boosted a database’s performance with minimal effort, the most notable of which allowed us to boost a data migration that was taking ~48 hours, to suddenly complete in about 3 hours.
 
-#Joins
+## Joins
 
 You can join tables together that have relations between each other, so that you can operate on data across those tables. For instance, I want the titles of all posts that have published comments.
 
-'''Unix
+```
 
 SELECT posts.title FROM posts JOIN comments ON posts.id = comments.post_id WHERE comments.published=1;
-'''
+
+```
 
 (Note: each post on that query will appear as many times as it has comments, but let’s focus on the join for now.)
 
@@ -125,7 +132,7 @@ Performance is dramatically better if you manage to get the database to do most 
 
 Note: you can join tables together across many relations. The largest join in my career was 7-fold, in a database at Apple that contained information about localization projects.
 
-# A NoSQL kind of database: document-based databases
+## A NoSQL kind of database: document-based databases
 
 One particularly popular type of NoSQL database is document-oriented databases, such as MongoDB or CouchDB. One reason they’re popular is because their learning curve is very smooth, and they feel natural to use: you just send them JSON documents, much like we’ve done in the “Relational databases done wrong” project, and they make it right when you need to fetch them back. You don’t need your JSON documents to have specific fields of specific types, just send whatever JSON you want; the technical word for this is that they are schemaless.
 
@@ -137,19 +144,19 @@ Just as relational databases, document-based databases offer a variety of extra 
 
 Document-based databases will be covered towards the end of year 1.
 
-#Another NoSQL kind of database: key-value stores
+## Another NoSQL kind of database: key-value stores
 
 Some applications may need very large key-value storage, which you may think of as the persistence of a single huge “dictionary” structure (the same structure that Ruby calls “hash”, Python calls “dict”, PHP calls “associative array”, Objective C and Swift calls “dictionary”, …). An obvious need for that is around caching (if you don’t understand why, we’ll cover this when we talk about caching). Cassandre, memcached and Redis are popular key-value stores.
 
 As your collection of key-values grows, you may need pretty advanced ways to organize them (and expire them, for instance), so, obviously, each key-value storage solution comes with more advanced tools than just the usual CRUD operations.
 
-#At the intersection of NoSQL and relational
+## At the intersection of NoSQL and relational
 
 As mentioned before, NoSQL databases sometimes get closer to relational databases by allowing to be queried using the SQL syntax (like Cassandra and Hypertable); but databases are getting closer also the other way around, as relational databases themselves have started offering some document-based storage.
 
 A mature example of that is PostgreSQL’s “hstore” type, which allows to store JSON data in PostgreSQL, in a way that is queriable. Most recently, this has allowed PostgreSQL to have a certain leg up against their competition of open-source relational databases, because MySQL hasn’t been able to ship a similar feature yet, although they’re expected too (MySQL development has dramatically slowed down now that they belong to Oracle, which is a direct closed-source competitor; a few years ago, most MySQL contributors went ahead to create another open-source database called MariaDB, which never really became mainstream, so maybe there won’t ever be document-based storage in MySQL, actually).
 
-#What NoSQL storage do I need?
+## What NoSQL storage do I need?
 
 NoSQL databases address all kinds of requirements, and therefore the ways they work are dramatically different. Here’s a really accurate map of the various solutions: http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis
 
