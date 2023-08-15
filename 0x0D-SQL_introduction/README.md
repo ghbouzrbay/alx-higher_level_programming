@@ -1,4 +1,9 @@
+## SQL - Structured Query Language :bar_chart:
 
+<p align="center">
+  <img src="https://github.com/ghbouzrbay/alx-higher_level_programming/blob/main/0x0D-SQL_introduction/database.png" alt="hbnb logo">
+</p>
+<h1 align="center">SQL</h1>
 
 
 
