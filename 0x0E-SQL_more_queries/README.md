@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://github.com/ghbouzrbay/alx-higher_level_programming/blob/main/0x0E-SQL_more_queries/for_readme_file/pic_sql.png" alt="hbnb logo">
+</p>
 
 
 
@@ -131,3 +134,8 @@ id  name
 8   Thriller
 $
 ```
+
+<p align="center">
+  <img src="https://github.com/ghbouzrbay/alx-higher_level_programming/blob/main/0x0E-SQL_more_queries/for_readme_file/sql_join.png" alt="hbnb logo">
+</p>
+
