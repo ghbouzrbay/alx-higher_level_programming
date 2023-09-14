@@ -1,4 +1,4 @@
-<p align="center">Python - Object-relational mapping</p>
+## Python - Object-relational mapping
 
 
 ## Before you start…
@@ -50,19 +50,19 @@ Indeed, all of them have the same type of syntax, but not always. Please read tu
 
 **Read or watch:**
 
-[Object-relational mappers](https://www.fullstackpython.com/object-relational-mappers-orms.html)
-[mysqlclient/MySQLdb documentation](https://mysqlclient.readthedocs.io/)
-[MySQLdb tutorial](https://www.mikusa.com/python-mysql-docs/index.html)
-[SQLAlchemy tutorial](https://docs.sqlalchemy.org/en/13/orm/tutorial.html)
-[SQLAlchemy](https://docs.sqlalchemy.org/en/13/)
-[mysqlclient/MySQLdb](https://github.com/PyMySQL/mysqlclient)
-[Introduction to SQLAlchemy](https://www.youtube.com/watch?v=woKYyhLCcnU)
-[Flask SQLAlchemy](https://www.youtube.com/playlist?list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW)
-[10 common stumbling blocks for SQLAlchemy newbies](http://alextechrants.blogspot.com/2013/11/10-common-stumbling-blocks-for.html)
-[Python SQLAlchemy Cheatsheet](https://www.pythonsheets.com/notes/python-sqlalchemy.html)
-[SQLAlchemy ORM Tutorial for Python Developers (Warning: This tutorial is with PostgreSQL, but the concept of SQLAlchemy is the same with MySQL)](https://auth0.com/blog/sqlalchemy-orm-tutorial-for-python-developers/)
-[SQLAlchemy Tutorial](https://overiq.com/sqlalchemy-101/)
-[Python Virtual Environments: A primer](https://realpython.com/python-virtual-environments-a-primer/)
++ [Object-relational mappers](https://www.fullstackpython.com/object-relational-mappers-orms.html)
++ [mysqlclient/MySQLdb documentation](https://mysqlclient.readthedocs.io/)
++ [MySQLdb tutorial](https://www.mikusa.com/python-mysql-docs/index.html)
++ [SQLAlchemy tutorial](https://docs.sqlalchemy.org/en/13/orm/tutorial.html)
++ [SQLAlchemy](https://docs.sqlalchemy.org/en/13/)
++ [mysqlclient/MySQLdb](https://github.com/PyMySQL/mysqlclient)
++ [Introduction to SQLAlchemy](https://www.youtube.com/watch?v=woKYyhLCcnU)
++ [Flask SQLAlchemy](https://www.youtube.com/playlist?list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW)
++ [10 common stumbling blocks for SQLAlchemy newbies](http://alextechrants.blogspot.com/2013/11/10-common-stumbling-blocks-for.html)
++ [Python SQLAlchemy Cheatsheet](https://www.pythonsheets.com/notes/python-sqlalchemy.html)
++ [SQLAlchemy ORM Tutorial for Python Developers (Warning: This tutorial is with PostgreSQL, but the concept of SQLAlchemy is the same with MySQL)](https://auth0.com/blog/sqlalchemy-orm-tutorial-for-python-developers/)
++ [SQLAlchemy Tutorial](https://overiq.com/sqlalchemy-101/)
++ [Python Virtual Environments: A primer](https://realpython.com/python-virtual-environments-a-primer/)
 
 ## Learning Objectives
 
@@ -100,7 +100,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 + A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 + You are not allowed to use ```execute``` with sqlalchemy
 
-##More Info
+## More Info
 
 ## Install and activate venv
 
