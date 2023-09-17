@@ -15,5 +15,5 @@ if __name__ == "__main__":
     states = sess.query(State).filter(State.name.like('%a%'))
     for state in states:
         sess.delete(state)
-        sess.commit()
-        sess.close()
+    sess.commit()
+    sess.close()

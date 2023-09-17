@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-"""Script that changes the name of a State object from the database hbtn_0e_6_usa"""
+"""Script that creates the State “California” with the City “San Francisco”
+from the database hbtn_0e_100_usa"""
+
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+from relationship_state import Base, State
+from relationship_city import City
 
 if __name__ == "__main__":
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format
@@ -11,7 +14,9 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     session_marker = sessionmaker(bind=engine)
     sess = session_marker()
-    state = sess.query(State).filter_by(id=2).first()
-    state.name = 'New Mexico'
+    new_state = State(name='California')
+    new_city = City(name='San Francisco')
+    new_state.cities.append(new_city)
+    sess.add(new_state)
     sess.commit()
     sess.close()
