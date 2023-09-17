@@ -9,14 +9,10 @@ from relationship_state import Base, State
 from relationship_city import City
 
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format
-                           (sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-    session_marker = sessionmaker()
-    session_marker.configure(bind=engine)
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    session_marker = sessionmaker(bind=engine)
     sess = session_marker()
-    _query = sess.query(State).all()
-    for state in _query:
-        for city in state.cities:
-            print("{}: {} -> {}".format(city.id, city.name, state.name))
-    sess.close()
+
+    for city in sess.query(City).order_by(City.id):
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
