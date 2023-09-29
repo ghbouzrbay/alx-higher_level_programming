@@ -1,6 +1,44 @@
 # Python - Network #1
 
-This project involved learning how to use the ```urllib``` and requests Python libraries to send and receive HTTP messages to URL's. I practiced sending ```GET``` and ```POST``` requests, fetching ```JSON``` resources, and interacting with API's (the Star Wars API, GitHub API, and Twitter API).
+This project involved learning how to use the ```urllib``` and requests Python libraries to send and receive HTTP messages to URL's. I practiced sending ```GET``` and ```POST``` ```requests```, fetching ```JSON``` resources, and interacting with API's (the Star Wars API, GitHub API, and Twitter API).
+AOA
+## Resources
+**Read or watch:**
+
++ [HOWTO Fetch Internet Resources Using urllib Package](https://docs.python.org/3/howto/urllib2.html)
++ [Quickstart with Requests package](https://requests.readthedocs.io/en/latest/)
++ [Requests package](https://pypi.org/project/requests/)
+
+## Learning Objectives
+
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+## General
++ How to fetch internet resources with the Python package ```urllib```
++ How to decode ```urllib``` body response
++ How to use the Python package ```requests``` #requestsiswaysimplerthanurllib
++ How to make HTTP ```GET``` request
++ How to make HTTP ```POST/PUT/etc.``` request
++ How to fetch JSON resources
++ How to manipulate data from an external service
+
+
+## General
+
++ Allowed editors: ```vi```, ```vim```, ```emacs```
++ All your files will be interpreted/compiled on ```Ubuntu 20.04``` LTS using ```python3 (version 3.8.5)```
++ All your files should end with a new line
++ The first line of all your files should be exactly ```#!/usr/bin/python3```
++ A ```README.md``` file at the root of the repo, containing a description of the repository
++ A ```README.md``` file, at the root of the folder of this project, is mandatory
++ Your code should use the ```pycodestyle (version 2.8.*)```
++ All your files must be executable
++ The length of your files will be tested using ```wc```
++ All your modules should have a documentation ```(python3 -c 'print(__import__("my_module").__doc__)')```
++ You must use get to access to dictionary value by key (it won’t throw an exception if the key doesn’t exist in the dictionary)
++ A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
++ Your code should not be executed when imported ```(by using if __name__ == "__main__":)```
+
 
 ## Tasks 📃
 
@@ -51,39 +89,8 @@ This project involved learning how to use the ```urllib``` and requests Python l
 		* If no letter is given, sets q="".
 		* If the response body is properly formatted and non-empty, displays it as [<id>] <name>.
 		* Uses requests.
-* 9. Star Wars API #0
-
-	* 9-starwars.py: Python script sends a search request to the Star Wars API people endpoint with a given string.
-		* Usage: ./9-starwars.py <search string>
-		* Displays the total number and name of each result.
-		* Uses requests.
 * 10. My Github!
 
 	* 10-my_github.py: Python script that takes GitHub credentials (username and password) and uses the Github API to display the corresponding ID.
 		* Usage: ./10-my_github.py <username> <password>
-		* Uses requests.
-* 11. Time for an interview!
-
-	* 100-github_commits.py: Python script that lists the 10 most recent comments of a given GitHub repository using the GitHub API.
-		* Usage: ./100-github_commits.py <repository name> <owner name>
-		* Uses requests.
-* 12. Star Wars API #1
-
-	* 101-starwars.py: Python script that sends a search request to the Star Wars API people endpoint with a given string.
-		* Usage: ./101-starwars.py <search string>
-		* Displays the total number and name of each result.
-		* Manages pagination to display all results.
-		* Uses requests.
-* 13. Star Wars API #2
-
-	* 102-starwars.py: Python script that sends a search request to the Star Wars API people endpoint with a given string.
-		* Usage: ./102-starwars.py <search string>
-		* Displays the total number and name of each result as well as the list of films associated with each character.
-		* Manages pagination to display all results.
-		* Uses requests.
-* 14. Twitter Auth
-
-	* 103-search_twitter.py: Python script that sends a search request to the Twitter API search endpoint with a given string.
-		* Usage: ./103-search_twitter.py <consumer key> <consumer secret> <search string>
-		* Displays the the top 5 results in the format [<Tweet ID>] <Tweet text> by <Tweet owner name>.
 		* Uses requests.
