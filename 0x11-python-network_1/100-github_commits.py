@@ -1,20 +1,26 @@
 #!/usr/bin/python3
-"""Lists the 10 most recent commits on a given GitHub repository."""
+"""
+script that takes 2 arguments in order to list 10 commits (from the most
+recent to oldest) of the repository "rails" by the user "rails".
+"""
 
 import sys
 import requests
 
 
 if __name__ == "__main__":
-    url = "https://api.github.com/repos/{}/{}/commits".format(
-        sys.argv[2], sys.argv[1])
-
-    response = requests.get(url)
-    commit = response.json()
     try:
-        for i in range(10):
-            print("{}: {}".format(
-                commit[i].get("sha"),
-                commit[i].get("commit").get("author").get("name")))
-    except IndexError:
+        repository_name = sys.argv[1]
+        username = sys.argv[2]
+        url = "https://api.github.com/repos/{}/{}/commits" \
+            .format(username, repository_name)
+        response = requests.get(url)
+        fjson = response.json()
+        for i, objct in enumerate(fjson):
+            if i == 10:
+                break
+            if type(objct) is dict:
+                name = objct.get('commit').get('author').get('name')
+                print("{}: {}".format(objct.get('sha'), name))
+    except ValueError as invalid_json:
         pass
